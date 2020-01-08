@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- Search view of the guest model-->
+    <record id="doc_search" model="ir.ui.view">
+        <field name="name">doctor.list.search</field>
+        <field name="model">doctor.list</field>
+        <field name="arch" type="xml">
+             <search string="Search Doctor Name">
+
+
+
+                 <field name="doctor_name"/>
+                 <separator/>
+                 <filter string="Male" name="male" domain="[('doctor_gender','=','male')]"/>
+                  <filter string="Female" name="female" domain="[('doctor_gender','=','fe_male')]"/>
+                 <group expand="0" string="Group By">
+                     <filter string="Gender" name="gender" context="{'group_by':'doctor_gender'}"/>
+
+                 </group>
+
+
+
+             </search>
+        </field>
+    </record>
+
+    <record id="doc_tree" model="ir.ui.view">
+        <field name="name">doctor.list.tree</field>
+        <field name="model">doctor.list</field>
+        <field name="arch" type="xml">
+             <tree string="Doctor Tree">
+
+
+
+                             <field name="doctor_name"/>
+
+                            <field name="doctor_gender"/>
+
+
+
+
+             </tree>
+        </field>
+    </record>
+
+<!-- Form view of the guest model-->
+    <record id="doc_form" model="ir.ui.view">
+        <field name="name">doctor.list.form</field>
+        <field name="model">doctor.list</field>
+        <field name="arch" type="xml">
+             <form string="Doctor Form">
+
+                 <sheet>
+
+
+
+
+                     <group>
+
+                         <group>
+                             <field name="doctor_name"/>
+                         </group>
+                          <group>
+                             <field name="doctor_gender"/>
+                         </group>
+                          <group>
+                             <field name="user_id"/>
+                         </group>
+
+
+
+
+
+
+                     </group>
+                 </sheet>
+
+               <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+
+
+
+             </form>
+
+        </field>
+    </record>
+
+
+
+
+
+
+
+<record id="doctor_action" model="ir.actions.act_window">
+        <field name="name">Doctor</field>
+        <field name="res_model">doctor.list</field>
+        <field name="view_type">form</field>
+
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create New First Doctor!
+          </p>
+        </field>
+    </record>
+
+
+    <menuitem
+        id="menu_doctor_act"
+        name="Doctor"
+        sequence="0"
+        action="doctor_action"
+        parent="customer_root"
+      />
+
+</odoo>
